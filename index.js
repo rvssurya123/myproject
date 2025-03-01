@@ -223,41 +223,4 @@ app.patch('/studentsupdate/:id', (req, res) => {
 });
 
 
-
-
-
-
-
-
-app.delete('/studentsdel/:id', async (req, res) => {
-  const studentId = parseInt(req.params.id);
-
-  // Validate student ID
-  if (isNaN(studentId) || studentId <= 0) {
-      return res.status(400).json({ message: 'Invalid student ID' });
-  }
-
-  try {
-      // Log before deletion
-      //console.log('Attempting to DELETE student ID:', studentId);
-
-      // Execute DELETE query (permanently removes row)
-      const [result] = await pool.query('DELETE FROM students WHERE id = ?', [studentId]);
-
-      //console.log('Executed DELETE:', result); // Log output
-
-      // Check if the student exists
-      if (result.affectedRows === 0) {
-          return res.status(404).json({ message: 'Student not found' });
-      }
-
-      res.status(200).json({ message: 'Student deleted successfully' });
-
-  } catch (error) {
-      console.error('Error deleting student:', error);
-      res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-
-console.log('Working on the server')
+//console.log('Working on the server')
