@@ -258,3 +258,6 @@ app.delete('/studentsdel/:id', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+console.log('Working on the server')
